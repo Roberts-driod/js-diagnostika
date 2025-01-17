@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <input type="text" id="number1" />
+    <input type="text" id="operator" />
+    <input type="text" id="number2" />
+
+    <p id="output"></p>
+    <button id="btn">Rēķināt</button>
+
+    <script>
+      const num1 = document.getElementById("number1");
+      const operator = document.getElementById("operator");
+      const num2 = document.getElementById("number2");
+      const output = document.getElementById("output");
+
+      const button = document.getElementById("btn");
+
+      button.addEventListener("click", handleClick);
+
+      function handleClick() {
+        const n1 = parseFloat(num1.value);
+        const n2 = parseFloat(num2.value);
+        const op = operator.value;
+
+        let result = calc(n1, n2, op);
+        output.innerHTML = result;
+
+        let error = userValidInput(n1, n2, op);
+        output.innerHTML = error.join("<br>");
+
+        console.log("Rēķināt nospiests");
+      }
+
+      function calc(n1, n2, op) {
+        let result;
+
+        switch (op) {
+          case "+":
+            result = n1 + n2;
+            break;
+          case "-":
+            result = n1 - n2;
+            break;
+
+          case "*":
+            result = n1 * n2;
+            break;
+          case "/":
+            result = n1 / n2;
+            break;
+          default:
+            console.log("Nezināma operācija");
+        }
+        return result;
+      }
+
+      function userValidInput(n1, n2, op) {
+        let ary = [];
+        if (isNaN(n1)) {
+          ary.push("Pirmais skaitlis nav ievadīts");
+        }
+        if (isNaN(n2)) {
+          ary.push("Otrais skaitlis nav ievadīts");
+        }
+        if (!["+", "-", "*", "/"].includes == op) {
+          ary.push("Operācija ir nepareiza");
+        }
+        return ary;
+      }
+    </script>
+  </body>
+</html>
