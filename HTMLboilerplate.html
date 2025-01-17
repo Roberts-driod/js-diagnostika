@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style></style>
+    <style>
+      .succes {
+        color: green;
+      }
+      .error {
+        color: crimson;
+      }
+    </style>
   </head>
   <body>
     <input type="text" id="number1" />
@@ -40,11 +47,13 @@
         const op = operator.value;
 
         let result = calc(n1, n2, op);
+        output.classList = "succes";
         output.innerHTML = result;
 
         let error = userValidInput(n1, n2, op);
 
         if (error.length > 0) {
+          output.classList = "error";
           output.innerHTML = error.join("<br>");
         }
         console.log("Rēķināt nospiests");
@@ -82,7 +91,7 @@
         if (isNaN(n2)) {
           ary.push("Otrais skaitlis nav ievadīts");
         }
-        if (!["+", "-", "*", "/"].includes == op) {
+        if (!["+", "-", "*", "/"].includes(op)) {
           ary.push("Operācija ir nepareiza");
         }
         return ary;
