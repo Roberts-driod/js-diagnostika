@@ -13,14 +13,24 @@
 
     <p id="output"></p>
     <button id="btn">Rēķināt</button>
+    <button id="btnclear">Notīrīt</button>
 
     <script>
       const num1 = document.getElementById("number1");
       const operator = document.getElementById("operator");
       const num2 = document.getElementById("number2");
       const output = document.getElementById("output");
-
+      const clear = document.getElementById("btnclear");
       const button = document.getElementById("btn");
+
+      clear.addEventListener("click", handleClidk);
+
+      function handleClidk() {
+        num1.value = "";
+        num2.value = "";
+        operator.value = "";
+        output.innerHTML = "";
+      }
 
       button.addEventListener("click", handleClick);
 
